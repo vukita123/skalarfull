@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component}from "react";
+import { Route } from "react-router-dom";
+import Navbar from "./components/navbar";
+import Books from "./components/books";
+import Singlebook from "./components/singlebook";
+import Cart from "./components/cart"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      cart: {}
+    }
+  }
+
+  render(){
+    return (
+      <div>
+        <Navbar />
+        <Route exact path="/">
+            <Books />
+        </Route>
+        <Route path="/singlebook/:id" component={Singlebook}/> 
+        <Route path="/cart" component={Cart}/>   
+      </div>
+    );
+  };
 }
-
-export default App;
