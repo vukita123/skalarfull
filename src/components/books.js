@@ -3,17 +3,21 @@ import axios from 'axios';
 import { Col, Container, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavLink } from "react-router-dom";
+import './books.css';
 
 const Record = (props) => (
   <NavLink className="navbar-brand" to={`/singlebook/${props.record._id}`}>
-  <div width="100%" align-content="center">
-      <div>  <img src={props.record.book_cover} alt="bookimg" width="100%" />  </div>
-      <div class="bookitemtext" display="inline-block">
-        <div class="book_name">{props.record.book_name}</div>
-        <div class="book_author">{props.record.book_author}</div>
-      </div>
-      <div class="book_price">{props.record.book_price}</div>
-      
+  <div class="container">
+    <div class="book_card" width="100%" align-content="center">
+        <div class="book_img">  <img src={props.record.book_cover} alt="bookimg" />  </div>
+        <div class="book_text" display="inline-block">
+          <div class="book_name">{props.record.book_name}</div>
+          <div class="book_author">{props.record.book_author}</div>
+        </div>
+        <div class = "book_price_flex">
+          <div class="book_price">{props.record.book_price}din</div>
+        </div>
+    </div>
   </div>
   </NavLink>
 );

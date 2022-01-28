@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
+import { NavLink } from "react-router-dom";
 
 
 export default class Singlebook extends Component {
@@ -10,14 +11,14 @@ export default class Singlebook extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        book_name : "test",
+        book_name : "",
         book_author : "",
         book_cover : "",
         book_description : "",
         book_price : "",
         id : "",
         add : "",
-        records: []
+        // records: []
       };
       this.componentDidMount = this.componentDidMount.bind(this);
       this.addtocart = this.addtocart.bind(this);
@@ -45,27 +46,47 @@ export default class Singlebook extends Component {
     }
 
     addtocart(name){
+      console.log(name);
       this.setState({ add: name});
       this.addtocart = this.addtocart.bind(this);
+      console.log(this.state.add);
       localStorage.setItem(name, JSON.stringify(this.state));
-      // console.log(JSON.parse(localStorage.getItem()))
+
+      //localStorage.clear();
+      //console.log(JSON.parse(localStorage.getItem()))
     }
 
     
     render() {
       return (
         <Container>
-          <div width="100%" align-content="center">
-            <div>  <img src={this.state.book_cover} alt="bookimg" width="50%" />  </div>
-            <div class="bookitemtext" display="inline-block">
-              <div class="book_name">{this.state.book_name}</div>
-              <div class="book_author">{this.state.book_author}</div>
-            </div>
-            <div class="book_price">{this.state.book_price}</div>     
-          </div>
-          <div>
-            <button onClick={() => this.addtocart(this.state.id)}>add to cart</button>
-          </div>
+          <Row>
+            <Col class="single_book_img">
+              <div class="bookimg">
+                <img src={this.state.book_cover} alt="bookimg"/>  
+              </div>
+            </Col>
+
+            <Col class="single_book_data">
+
+              <div class="single_book_name">{this.state.book_name}</div>
+              <div class="single_book_author">{this.state.book_author}</div>
+
+              <div class="opis">Opis:</div> 
+              <div class="bookdesc">
+                {this.state.book_description}
+              </div>
+
+              <div class="single_book_price">{this.state.book_price}.00 din</div>     
+              
+              <NavLink to="../cart">
+                <div class="btn">
+                  <button class="button-23"onClick={() => this.addtocart(this.state.id)}>Dodaj u korpu</button>
+                </div>
+              </NavLink>
+            </Col>
+          
+          </Row>
         </Container>
       );
     }
