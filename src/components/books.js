@@ -15,7 +15,7 @@ const Record = (props) => (
           <div class="book_author">{props.record.book_author}</div>
         </div>
         <div class = "book_price_flex">
-          <div class="book_price">{props.record.book_price}din</div>
+          <div class="book_price">{props.record.book_price}.00 din</div>
         </div>
     </div>
   </div>

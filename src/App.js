@@ -6,6 +6,8 @@ import Singlebook from "./components/singlebook";
 import Cart from "./components/cart";
 import NameForm from "./components/checkout";
 import Footer from "./components/footer";
+import RecordList from "./components/recordList";
+import CreateBooks from "./components/createBooks";
 
 export default class App extends Component{
 
@@ -28,6 +30,12 @@ export default class App extends Component{
         <Route path="singlebook/cart" component={Cart}/>   
         <Route path="/checkout" component={NameForm}/>
         <Route path="/testemail"/>
+        <Route path="/createBooks">
+          <CreateBooks />
+        </Route>
+        <Route exact path="/recordList">
+          <RecordList />
+        </Route>
         <Footer sticky="bottom" />
       </div>
     );
